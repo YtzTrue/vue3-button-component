@@ -1,5 +1,19 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Phoshate';
+    font-weight: 400;
+    font-style: normal;
+    src: url(/src/fonts/phosphate-solid.woff2) format("woff2")
+}
+
 :root {
-    --primary-color: #702C7E;
+    --primary: #702C7E;
+    --secondary: #C4296C;
+    --warning: #F4BA46;
+    --disabled: #EFEFEF;
+    --info: #0083B6;
+    --danger: #DF3F3E;
+    --action: #ED732E;
 }
 
 * {
