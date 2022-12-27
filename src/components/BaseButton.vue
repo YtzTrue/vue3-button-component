@@ -24,6 +24,10 @@ export default {
         href: {
             type: String,
             default: ''
+        },
+        timer: {
+            type: Number,
+            default: 10
         }
     },
     data() {
@@ -42,10 +46,13 @@ export default {
     class="button"
     :class="[`button_${type}`, `button_${type}_${size}`, `button_${color}`, ]">
         <span :class="`${icon}`" v-if="type === 'icon'"></span>
-        <span v-if="type === 'button'">
+        <span v-if="type === 'button' || type === 'timer'">
             {{ label }}
         </span>
         <a v-if="type === 'link'" :href="href">{{ label }}</a>
+        <div v-if="type === 'timer'" class="timer-wrapper">
+            <span class="timer">{{ timer }}</span>
+        </div>
     </div>
 </template>
 
@@ -65,8 +72,14 @@ export default {
         line-height: 24px;
         color: #fff;
         cursor: pointer;
+        -moz-user-select: none; 
+        -o-user-select:none; 
+        -khtml-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
         // types
-        &_button {
+        &_button, &_timer {
             padding: 0px 60px;
             @media(max-width: 640px) {
                 height: 52px;
@@ -141,5 +154,18 @@ export default {
         span {
             vertical-align: middle;
         }
+    }
+
+    .timer-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        padding: 0 8px;
+        background-color: var(--danger);
+        border-radius: 6px;
+    }
+
+    .timer {
+        color: #fff;
     }
 </style>

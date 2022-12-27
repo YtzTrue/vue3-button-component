@@ -5,11 +5,36 @@ export default {
   name: 'app',
   components: { BaseButtonVue },
   data() {
-    return {}
+    return {
+      currentTime: 0,
+      timer: null,
+      color: 'primary'
+    }
   },
   methods: {
     clickBtn() {
       console.log('click')
+    },
+    restartTimer() {
+      console.log('start');
+      clearTimeout(this.timer);
+      this.currentTime = 15;
+      this.color = 'disabled';
+      this.timer = setInterval(() => {
+        this.currentTime--
+      }, 1000)
+    },
+    stopTimer() {
+      clearTimeout(this.timer)
+    },
+  },
+  watch: {
+    currentTime(time) {
+      if (time <= 0) {
+        console.log('stop');
+        this.stopTimer();
+        this.color = 'primary'
+      }
     }
   }
 }
@@ -75,6 +100,16 @@ export default {
         <h2 class="content__title">(button link)</h2>
         <BaseButtonVue href="#" class="content__btn" label="Напомнить PIN-код" type="link" @click.prevent="clickBtn"/>
       </div>
+      <div class="content__wrapper">
+        <h2 class="content__title">(button timer)</h2>
+        <BaseButtonVue 
+        class="content__btn" 
+        label="повторное письмо" 
+        type="timer" 
+        :color="this.color"
+        :timer="this.currentTime"
+        @click.prevent="restartTimer"/>
+      </div>
     </div>
   </div>
 </template>
@@ -102,6 +137,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 20px;
   }
   &__title {
     align-self: center;
