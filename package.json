@@ -8,11 +8,19 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "browserslist": [
+    "cover 97%"
+  ],
   "dependencies": {
     "vue": "^3.2.45"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-vue": "^9.8.0",
+    "prettier": "^2.8.1",
     "sass": "^1.57.1",
     "vite": "^4.0.0"
   }

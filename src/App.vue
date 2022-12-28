@@ -1,43 +1,48 @@
-<script>
+<script setup>
 import BaseButtonVue from './components/BaseButton.vue'
+import BaseIcon from './components/BaseIcon.vue';
 
-export default {
-  name: 'app',
-  components: { BaseButtonVue },
-  data() {
-    return {
-      currentTime: 0,
-      timer: null,
-      color: 'primary'
-    }
-  },
-  methods: {
-    clickBtn() {
-      console.log('click')
-    },
-    restartTimer() {
-      console.log('start');
-      clearTimeout(this.timer);
-      this.currentTime = 15;
-      this.color = 'disabled';
-      this.timer = setInterval(() => {
-        this.currentTime--
-      }, 1000)
-    },
-    stopTimer() {
-      clearTimeout(this.timer)
-    },
-  },
-  watch: {
-    currentTime(time) {
-      if (time <= 0) {
-        console.log('stop');
-        this.stopTimer();
-        this.color = 'primary'
-      }
-    }
-  }
+const clickButton = () => {
+  console.log('click')
 }
+
+const clickTimerButton = () => {
+  console.log('click timer')
+}
+
+  // data() {
+  //   return {
+  //     currentTime: 0,
+  //     timer: null,
+  //     color: 'primary'
+  //   }
+  // },
+  // methods: {
+  //   clickBtn() {
+  //     console.log('click')
+  //   },
+  //   restartTimer() {
+  //     console.log('start');
+  //     clearTimeout(this.timer);
+  //     this.currentTime = 15;
+  //     this.color = 'disabled';
+  //     this.timer = setInterval(() => {
+  //       this.currentTime--
+  //     }, 1000)
+  //   },
+  //   stopTimer() {
+  //     clearTimeout(this.timer)
+  //   },
+  // },
+  // watch: {
+  //   currentTime(time) {
+  //     if (time <= 0) {
+  //       console.log('stop');
+  //       this.stopTimer();
+  //       this.color = 'primary'
+  //     }
+  //   }
+  // }
 </script>
 
 <template>
@@ -47,68 +52,94 @@ export default {
       <div class="content__wrapper">
         <h2 class="content__title">(button-classic)</h2>
         <h2 class="content__btn-title">(primary)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="primary" size="small" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="primary">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(secondary)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="secondary" size="small" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="secondary">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(warning)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="warning" size="small" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="warning">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(disabled)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="disabled" size="small" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" :disabled="true">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(info)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="info" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="info">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(danger)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="danger" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="danger">Отправить&nbsp;письмо</BaseButtonVue>
         <h2 class="content__btn-title">(action)</h2>
-        <BaseButtonVue class="content__btn" label="Отправить&nbsp;письмо" color="action" @click.prevent="clickBtn"/>
+        <BaseButtonVue @click="clickButton" color="action">Отправить&nbsp;письмо</BaseButtonVue>
       </div>
       <div class="content__wrapper">
         <h2 class="content__title">(button multi-sized)</h2>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-arrow" type="icon" color="primary" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-arrow" type="icon" color="primary" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="primary" size="small">
+            <BaseIcon name="arrow1" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="primary">
+            <BaseIcon name="arrow1"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-exit" type="icon" color="danger" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-exit" type="icon" color="danger" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="danger" size="small">
+            <BaseIcon name="exit" size="small" viewBox="0 0 37 37"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="danger">
+            <BaseIcon name="exit" width="37" height="37" viewBox="0 0 37 37"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-quest" type="icon" color="info" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-quest" type="icon" color="info" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="info" size="small">
+            <BaseIcon name="quest" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="info">
+            <BaseIcon name="quest"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-arrow1" type="icon" color="primary" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-arrow1" type="icon" color="primary" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="primary" size="small">
+            <BaseIcon name="arrow" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="primary">
+            <BaseIcon name="arrow"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-google" type="icon" color="danger" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-google" type="icon" color="danger" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="danger" size="small">
+            <BaseIcon name="google" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="danger">
+            <BaseIcon name="google"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-vk" type="icon" color="info" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-vk" type="icon" color="info" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="info" size="small">
+            <BaseIcon name="vk" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="info">
+            <BaseIcon name="vk"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-class" type="icon" color="action" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-class" type="icon" color="action" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="action" size="small">
+            <BaseIcon name="class" size="small"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="action">
+            <BaseIcon name="class"></BaseIcon>
+          </BaseButtonVue>
         </div>
         <div class="content__btn-group">
-          <BaseButtonVue class="content__btn" icon="icon-pen" type="icon" color="primary" size="small" @click.prevent="clickBtn"/>
-          <BaseButtonVue class="content__btn" icon="icon-pen" type="icon" color="primary" @click.prevent="clickBtn"/>
+          <BaseButtonVue type="icon" color="primary" size="small">
+            <BaseIcon name="pen" size="small" viewBox="0 0 42 42"></BaseIcon>
+          </BaseButtonVue>
+          <BaseButtonVue type="icon" color="primary">
+            <BaseIcon name="pen" width="42" height="42" viewBox="0 0 42 42"></BaseIcon>
+          </BaseButtonVue>
         </div>
       </div>
       <div class="content__wrapper">
         <h2 class="content__title">(button link)</h2>
-        <BaseButtonVue href="#" class="content__btn" label="Напомнить PIN-код" type="link" @click.prevent="clickBtn"/>
+        <BaseButtonVue href="#" type="link">Напомнить PIN-код</BaseButtonVue>
       </div>
       <div class="content__wrapper">
         <h2 class="content__title">(button timer)</h2>
-        <BaseButtonVue 
-        class="content__btn" 
-        label="повторное письмо" 
-        type="timer" 
-        :color="this.color"
-        :timer="this.currentTime"
-        @click.prevent="restartTimer"/>
+        <BaseButtonVue @click="clickTimerButton" type="timer">повторное&nbsp;письмо</BaseButtonVue>
       </div>
     </div>
   </div>
@@ -116,7 +147,6 @@ export default {
 
 <style lang="scss">
 @import "@/styles/global.scss";
-@import "@/styles/icons.css";
 
 #app {
   max-width: 1400px;
@@ -133,18 +163,21 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
   }
+
   &__title {
     align-self: center;
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
   }
+
   &__btn-title {
     margin-top: 0;
     margin-bottom: 8px;
@@ -153,12 +186,15 @@ export default {
     line-height: 24px;
     color: #fff;
   }
+
   &__btn-group {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 24px;
   }
-  &__btn {
+
+  .button_button {
     margin-bottom: 24px;
   }
 }

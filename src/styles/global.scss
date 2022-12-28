@@ -1,32 +1,34 @@
 @font-face {
-    font-display: swap;
-    font-family: 'Phoshate';
-    font-weight: 400;
-    font-style: normal;
-    src: url(/src/fonts/phosphate-solid.woff2) format("woff2")
+  font-display: swap;
+  font-family: 'Phoshate';
+  font-weight: 400;
+  font-style: normal;
+  src: url(/src/fonts/phosphate-solid.woff2) format("woff2")
 }
 
 :root {
-    --primary: #702C7E;
-    --secondary: #C4296C;
-    --warning: #F4BA46;
-    --disabled: #EFEFEF;
-    --info: #0083B6;
-    --danger: #DF3F3E;
-    --action: #ED732E;
+  --primary: #702C7E;
+  --secondary: #C4296C;
+  --warning: #F4BA46;
+  --disabled: #EFEFEF;
+  --info: #0083B6;
+  --danger: #DF3F3E;
+  --action: #ED732E;
+  --icon-path: path("M21.1308 0.205876C3.16962 0.756644 -9.93011e-05 15.352 0 24.9904C9.93057e-05 34.6289 1.41693e-06 32.5635 0.660292 41.5135C1.32058 50.4635 9.24465 57.3481 15.1877 58.725C21.1308 60.1019 41.8654 61.2034 48.2047 57.3481C56.1287 52.5288 58.7701 44.2673 59.4304 36.6942C60.0908 29.1212 61.4115 15.352 54.8081 7.77894C48.2047 0.205876 43.5824 -0.482584 21.1308 0.205876Z");
+  --icon-path-small: path("M18.3134 0.178426C2.74701 0.655758 -8.60609e-05 13.3051 0 21.6584C8.6065e-05 30.0117 1.2517e-06 28.2217 0.572253 35.9783C1.14451 43.735 8.01203 49.7016 13.1627 50.895C18.3134 52.0883 36.2834 53.043 41.7774 49.7017C48.6449 45.525 50.9341 38.365 51.5064 31.8017C52.0787 25.2384 53.2233 13.3051 47.5003 6.74175C41.7774 0.178426 37.7714 -0.41824 18.3134 0.178426Z");
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background-color: #1E1E1E;
-    color: #C8C8C8;
+  margin: 0;
+  background-color: #1E1E1E;
+  color: #C8C8C8;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
