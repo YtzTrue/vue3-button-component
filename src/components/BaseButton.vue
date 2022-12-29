@@ -25,8 +25,8 @@ const props = defineProps({
     default: ''
   },
   timer: {
-    type: Number,
-    default: 10
+    type: String,
+    default: '00:00'
   }
 })
 const emit = defineEmits(['click'])
@@ -195,6 +195,17 @@ const click = () => {
   }
 }
 
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -44px;
+  width: 46px;
+  height: 52px;
+  overflow: hidden;
+  clip-path: path("M0 51.9694V0.0467095C7.62125 -0.0384196 14.9744 -0.00900615 19.91 0.149932C32.3106 0.549263 39.1023 0.919741 42.86 9.3057C45.4933 15.1822 45.9983 23.7337 46 29.0811C46 29.0997 46 29.1183 46 29.1368C45.9993 31.3922 45.9093 33.0692 45.8535 33.7211C45.8423 33.8518 45.8315 34.0019 45.8194 34.1697C45.6278 36.8224 45.1159 43.9105 37.8709 48.9807C34.1516 51.5835 17.2812 52.1493 0 53Z");
+}
+
 .link {
   height: unset;
   margin: 0;
@@ -223,10 +234,12 @@ const click = () => {
 .timer-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-left: 10px;
-  padding: 0 8px;
+  width: 54px;
+  height: 26px;
   background-color: var(--danger);
-  border-radius: 6px;
+  clip-path: var(--timer-path);
 }
 
 .timer {

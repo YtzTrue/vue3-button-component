@@ -19,7 +19,7 @@ const props = defineProps({
 
 <template>
   <svg :width="size === 'small' ? 24 : 30" :height="size === 'small' ? 24 : 30" viewBox="0 0 30 30" :fill="fill"
-    xmlns="http://www.w3.org/2000/svg" v-html="icons[this.name]">
+    xmlns="http://www.w3.org/2000/svg" v-html="icons[name]">
   </svg>
 </template>
 

@@ -1,48 +1,43 @@
 <script setup>
-import BaseButtonVue from './components/BaseButton.vue'
+import BaseButtonVue from './components/BaseButton.vue';
 import BaseIcon from './components/BaseIcon.vue';
+import { ref, watch, reactive } from 'vue'
 
 const clickButton = () => {
   console.log('click')
 }
 
+let currentTime = ref(0);
+let timer = null;
+let state = reactive({ isDisabled: false });
+let strTimer = ref('00:00')
 const clickTimerButton = () => {
-  console.log('click timer')
+  console.log('start');
+  state.isDisabled = true;
+  clearTimeout(timer);
+  currentTime.value = 75; // начальное значение таймера для обратного отсчета
+  timer = setInterval(() => {
+    let seconds = currentTime.value % 60;
+    if (currentTime.value % 60 < 10) {
+      seconds = '0' + currentTime.value % 60;
+    }
+    let minutes = currentTime.value / 60 % 60;
+    if (currentTime.value >= 0) {
+      minutes < 10 ? strTimer.value = `0${Math.trunc(minutes)}:${seconds}` :
+        strTimer.value = `${Math.trunc(minutes)}:${seconds}`;
+    } else {
+      console.log('stop');
+      stopTimer();
+      state.isDisabled = false;
+    }
+    --currentTime.value;
+  }, 1000)
 }
-
-  // data() {
-  //   return {
-  //     currentTime: 0,
-  //     timer: null,
-  //     color: 'primary'
-  //   }
-  // },
-  // methods: {
-  //   clickBtn() {
-  //     console.log('click')
-  //   },
-  //   restartTimer() {
-  //     console.log('start');
-  //     clearTimeout(this.timer);
-  //     this.currentTime = 15;
-  //     this.color = 'disabled';
-  //     this.timer = setInterval(() => {
-  //       this.currentTime--
-  //     }, 1000)
-  //   },
-  //   stopTimer() {
-  //     clearTimeout(this.timer)
-  //   },
-  // },
-  // watch: {
-  //   currentTime(time) {
-  //     if (time <= 0) {
-  //       console.log('stop');
-  //       this.stopTimer();
-  //       this.color = 'primary'
-  //     }
-  //   }
-  // }
+const stopTimer = () => {
+  clearTimeout(timer);
+}
+watch(strTimer, () => {
+})
 </script>
 
 <template>
@@ -139,7 +134,8 @@ const clickTimerButton = () => {
       </div>
       <div class="content__wrapper">
         <h2 class="content__title">(button timer)</h2>
-        <BaseButtonVue @click="clickTimerButton" type="timer">повторное&nbsp;письмо</BaseButtonVue>
+        <BaseButtonVue @click="clickTimerButton" :disabled="state.isDisabled" type="timer" :timer="strTimer">
+          повторное&nbsp;письмо</BaseButtonVue>
       </div>
     </div>
   </div>
